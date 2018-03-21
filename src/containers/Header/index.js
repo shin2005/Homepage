@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
-import faviconyay from "../../img/logo.png";
-import placeholder from "../../img/beer.png";
-import { css } from "emotion";
+import logo from "../../img/logo.png";
 
 export default class Header extends Component {
   render() {
@@ -19,7 +17,7 @@ export default class Header extends Component {
         <div>
           <Link to="/">
             {" "}
-            <img src={faviconyay} alt="Home" style={{height : '1.49rem'}} />{" "}
+            <img src={logo} alt="Home" style={{height : '1.49rem'}} />{" "}
           </Link>
           <Link to="/resources">
             resources
