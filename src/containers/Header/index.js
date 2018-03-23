@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import UserMenu from "./UserMenu";
-import logo from "../../img/logo.png";
 
 export default class Header extends Component {
   render() {
@@ -16,8 +15,7 @@ export default class Header extends Component {
       >
         <div>
           <Link to="/">
-            {" "}
-            <img src={logo} alt="Home" style={{height : '1.49rem'}} />{" "}
+            Home
           </Link>
           <Link to="/resources">
             resources
