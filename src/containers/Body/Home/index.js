@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { css } from "emotion";
-import Panel from "../../../components/Panel";
-import URL from "../../../constants/URL";
-import request from "axios";
 
 export default class Home extends Component {
   state = {
@@ -10,17 +7,6 @@ export default class Home extends Component {
     questionInput: "",
     descriptionInput: ""
   };
-
-  async componentDidMount() {
-    try {
-      const { data } = await request.get(`${URL}/feeds`);
-      this.setState({
-        feeds: data
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   render() {
     const { feeds, questionInput, descriptionInput } = this.state;
@@ -43,55 +29,8 @@ export default class Home extends Component {
           }
         `}
       >
-        <section>
-          <input
-            placeholder="Type your question"
-            value={questionInput}
-            onChange={event =>
-              this.setState({ questionInput: event.target.value })
-            }
-          />
-          <textarea
-            placeholder="Enter content"
-            value={descriptionInput}
-            onChange={event =>
-              this.setState({ descriptionInput: event.target.value })
-            }
-          />
-          <button onClick={this.onSubmitFeed}>submit</button>
-        </section>
-        {feeds.map(feed => (
-          <Panel
-            key={feed.id}
-            title={feed.title}
-            description={feed.description}
-          />
-        ))}
+        this is home
       </div>
     );
   }
-
-  onSubmitFeed = async () => {
-    const { questionInput, descriptionInput } = this.state;
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const { data } = await request.post(
-          `${URL}/feeds`,
-          {
-            title: questionInput,
-            description: descriptionInput
-          },
-          {
-            headers: {
-              authorization: token
-            }
-          }
-        );
-        this.setState({ feeds: data, questionInput: "", descriptionInput: "" });
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  };
 }
