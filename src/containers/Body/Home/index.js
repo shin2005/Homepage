@@ -1,15 +1,30 @@
-import React, { Component } from "react";
-import { css } from "emotion";
+import React, { Component } from 'react';
+import { css } from 'emotion';
+import request from 'axios';
+import URL from '../../../constants/URL';
 
 export default class Home extends Component {
   state = {
     feeds: [],
-    questionInput: "",
-    descriptionInput: ""
+    questionInput: '',
+    descriptionInput: '',
+    inputText: '',
+    posts: []
   };
 
+  async componentDidMount() {
+    const { data } = await request.get(`${URL}/posts`);
+    this.setState({ posts: data });
+  }
+
   render() {
-    const { feeds, questionInput, descriptionInput } = this.state;
+    const {
+      feeds,
+      questionInput,
+      descriptionInput,
+      inputText,
+      posts
+    } = this.state;
     return (
       <div
         className={css`
@@ -41,20 +56,62 @@ export default class Home extends Component {
           `}
         >
           <header>New Gadgets</header>
-          <div className={css`
-            width: 100%;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            .ipad {
-              margin-top: 1rem;
-              width: 80%;
-            }
-          `}>
+          <div
+            className={css`
+              width: 100%;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              .ipad {
+                margin-top: 1rem;
+                width: 80%;
+              }
+            `}
+          >
             <img className="ipad" src="/ipad_pro.jpg" rel="" />
+            <div
+              className={css`
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 50%;
+              `}
+            >
+              <input
+                className={css`
+                  margin-top: 2rem;
+                  font-size: 2rem;
+                  line-height: 1.5;
+                  padding: 0.5rem;
+                `}
+                value={inputText}
+                placeholder="Gun Rocks"
+                onChange={event =>
+                  this.setState({ inputText: event.target.value })
+                }
+              />
+              <button
+                className={css`
+                  margin-top: 1rem;
+                `}
+                onClick={this.onTextSubmit}
+              >
+                Press to submit
+              </button>
+              {posts.map(post => <div key={post.id}>{post.content}</div>)}
+            </div>
           </div>
         </div>
       </div>
     );
   }
+
+  onTextSubmit = async () => {
+    const { inputText } = this.state;
+    const { data } = await request.post(`${URL}/posts`, { post: inputText });
+    this.setState(state => ({
+      inputText: '',
+      posts: state.posts.concat([data])
+    }));
+  };
 }
