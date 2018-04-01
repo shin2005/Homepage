@@ -85,7 +85,7 @@ export default class Home extends Component {
                   padding: 0.5rem;
                 `}
                 value={inputText}
-                placeholder="Gun Rocks"
+                placeholder=""
                 onChange={event =>
                   this.setState({ inputText: event.target.value })
                 }
