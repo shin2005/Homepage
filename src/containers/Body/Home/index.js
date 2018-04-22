@@ -69,7 +69,6 @@ export default class Home extends Component {
             `}
           >
             <img className="ipad" src="/ipad_pro.jpg" rel="" />
-            <img className="iphonered" src="/iPhonered.jpg" rel="" />
             <div
               className={css`
                 display: flex;
