@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { css } from 'emotion';
-import request from 'axios';
-import URL from '../../../constants/URL';
+import React, { Component } from "react";
+import { css } from "emotion";
+import request from "axios";
+import URL from "../../../constants/URL";
 
 export default class Home extends Component {
   state = {
     feeds: [],
-    questionInput: '',
-    descriptionInput: '',
-    inputText: '',
+    questionInput: "",
+    descriptionInput: "",
+    inputText: "",
     posts: []
   };
 
@@ -77,28 +77,38 @@ export default class Home extends Component {
                 width: 50%;
               `}
             >
-              <input
+              <img className="iphonered" src="/iPhone8red.png" rel="" />
+              <div
                 className={css`
-                  margin-top: 2rem;
-                  font-size: 2rem;
-                  line-height: 1.5;
-                  padding: 0.5rem;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  width: 50%;
                 `}
-                value={inputText}
-                placeholder=""
-                onChange={event =>
-                  this.setState({ inputText: event.target.value })
-                }
-              />
-              <button
-                className={css`
-                  margin-top: 1rem;
-                `}
-                onClick={this.onTextSubmit}
               >
-                Press to submit
-              </button>
-              {posts.map(post => <div key={post.id}>{post.content}</div>)}
+                <input
+                  className={css`
+                    margin-top: 3rem;
+                    font-size: 2rem;
+                    line-height: 1.5;
+                    padding: 0.5rem;
+                  `}
+                  value={inputText}
+                  placeholder=""
+                  onChange={event =>
+                    this.setState({ inputText: event.target.value })
+                  }
+                />
+                <button
+                  className={css`
+                    margin-top: 1rem;
+                  `}
+                  onClick={this.onTextSubmit}
+                >
+                  Press to submit
+                </button>
+                {posts.map(post => <div key={post.id}>{post.content}</div>)}
+              </div>
             </div>
           </div>
         </div>
@@ -110,7 +120,7 @@ export default class Home extends Component {
     const { inputText } = this.state;
     const { data } = await request.post(`${URL}/posts`, { post: inputText });
     this.setState(state => ({
-      inputText: '',
+      inputText: "",
       posts: state.posts.concat([data])
     }));
   };
