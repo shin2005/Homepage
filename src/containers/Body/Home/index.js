@@ -32,7 +32,7 @@ export default class Home extends Component {
           display: flex;
           flex-direction: column;
           > section {
-            display: flex; 
+            display: flex;
             flex-direction: column;
             margin-top: 1rem;
             > textarea {
@@ -86,37 +86,38 @@ export default class Home extends Component {
                   width: 50%;
                 `}
               >
-                            <img className="homepod" src="/homepod.png" rel="" />
-              <div
-                className={css`
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  width: 50%;
-                `}
-              >
-                <input
+                <img className="homepod" src="/homepod.png" rel="" />
+                <div
                   className={css`
-                    margin-top: 3rem;
-                    font-size: 2rem;
-                    line-height: 1.5;
-                    padding: 0.5rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 50%;
                   `}
-                  value={inputText}
-                  placeholder=""
-                  onChange={event =>
-                    this.setState({ inputText: event.target.value })
-                  }
-                />
-                <button
-                  className={css`
-                    margin-top: 1rem;
-                  `}
-                  onClick={this.onTextSubmit}
                 >
-                  Press to submit
-                </button>
-                {posts.map(post => <div key={post.id}>{post.content}</div>)}
+                  <input
+                    className={css`
+                      margin-top: 3rem;
+                      font-size: 2rem;
+                      line-height: 1.5;
+                      padding: 0.5rem;
+                    `}
+                    value={inputText}
+                    placeholder=""
+                    onChange={event =>
+                      this.setState({ inputText: event.target.value })
+                    }
+                  />
+                  <button
+                    className={css`
+                      margin-top: 1rem;
+                    `}
+                    onClick={this.onTextSubmit}
+                  >
+                    Press to submit
+                  </button>
+                  {posts.map(post => <div key={post.id}>{post.content}</div>)}
+                </div>
               </div>
             </div>
           </div>
