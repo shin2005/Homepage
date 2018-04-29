@@ -32,7 +32,7 @@ export default class Home extends Component {
           display: flex;
           flex-direction: column;
           > section {
-            display: flex;
+            display: flex; 
             flex-direction: column;
             margin-top: 1rem;
             > textarea {
