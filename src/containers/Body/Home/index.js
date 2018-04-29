@@ -86,6 +86,15 @@ export default class Home extends Component {
                   width: 50%;
                 `}
               >
+                            <img className="homepod" src="/homepod.png" rel="" />
+              <div
+                className={css`
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  width: 50%;
+                `}
+              >
                 <input
                   className={css`
                     margin-top: 3rem;
