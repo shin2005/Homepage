@@ -86,7 +86,7 @@ export default class Home extends Component {
                   width: 50%;
                 `}
               >
-                <img className="homepod" src="/homepod.png" rel="" />
+                <img className="homepod" src="/Homepod.png" rel="" />
                 <div
                   className={css`
                     display: flex;
