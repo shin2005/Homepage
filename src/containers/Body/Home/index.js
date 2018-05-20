@@ -55,7 +55,7 @@ export default class Home extends Component {
             }
           `}
         >
-          <header>New Gadgets</header>
+          <header>Rumors for New Stuff</header>
           <div
             className={css`
               width: 100%;
